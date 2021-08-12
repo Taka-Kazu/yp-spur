@@ -200,7 +200,7 @@ void odometry(OdometryPtr xp, short *cnt, short *pwm, double dt, double time)
       mtorque[i] += p(YP_PARAM_TORQUE_NEWTON_NEG, i) + p(YP_PARAM_TORQUE_VISCOS_NEG, i) * fabs(mvel[i]);
     }
     wtorque[i] = mtorque[i] * p(YP_PARAM_GEAR, i);
-    yprintf(OUTPUT_LV_INFO, "wvel[%d]: %.3lf[rad/s], volt[%d]: %.3lf[V], vc[%d]: %.3lf[rad/(sV)], wt[%d]: %.3lf[Nm]", i, wvel[i], i, volt[i], i, vc[i], i, wtorque[i]);
+    yprintf(OUTPUT_LV_INFO, "wvel[%d]: %.3lf[rad/s], volt[%d]: %.3lf[V], vc[%d]: %.3lf[rad/(sV)], wt[%d]: %.3lf[Nm]\n", i, wvel[i], i, volt[i], i, vc[i], i, wtorque[i]);
   }
 
   /* キネマティクス計算 */
@@ -209,7 +209,7 @@ void odometry(OdometryPtr xp, short *cnt, short *pwm, double dt, double time)
 
   torque_trans = wtorque[MOTOR_RIGHT] / p(YP_PARAM_RADIUS, MOTOR_RIGHT) + wtorque[MOTOR_LEFT] / p(YP_PARAM_RADIUS, MOTOR_LEFT);
   torque_angular = (+wtorque[MOTOR_RIGHT] / p(YP_PARAM_RADIUS, MOTOR_RIGHT) - wtorque[MOTOR_LEFT] / p(YP_PARAM_RADIUS, MOTOR_LEFT)) * p(YP_PARAM_TREAD, 0) / 2;
-  yprintf(OUTPUT_LV_INFO, "v: %.3lf[m/s], w: %.3lf[rad/s], f: %.3lf[N], t: %.3lf[Nm]", v, w, torque_trans, torque_angular);
+  yprintf(OUTPUT_LV_INFO, "v: %.3lf[m/s], w: %.3lf[rad/s], f: %.3lf[N], t: %.3lf[Nm]\n", v, w, torque_trans, torque_angular);
 
   /* オドメトリ計算 */
   xp->x = xp->x + v * cos(xp->theta) * dt;
