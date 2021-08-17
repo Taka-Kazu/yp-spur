@@ -200,7 +200,7 @@ void odometry(OdometryPtr xp, short *cnt, short *pwm, double dt, double time)
       mtorque[i] += p(YP_PARAM_TORQUE_NEWTON_NEG, i) + p(YP_PARAM_TORQUE_VISCOS_NEG, i) * fabs(mvel[i]);
     }
     wtorque[i] = mtorque[i] * p(YP_PARAM_GEAR, i);
-    yprintf(OUTPUT_LV_INFO, "wvel[%d]: %.3lf[rad/s], volt[%d]: %.3lf[V], vc[%d]: %.3lf[rad/(sV)], wt[%d]: %.3lf[Nm]\n", i, wvel[i], i, volt[i], i, vc[i], i, wtorque[i]);
+    yprintf(OUTPUT_LV_INFO, "mvel[%d]: %.3lf[rad/s], wvel[%d]: %.3lf[rad/s], volt[%d]: %.3lf[V], vc[%d]: %.3lf[rad/(sV)], wt[%d]: %.3lf[Nm]\n", i, mvel[i], i, wvel[i], i, volt[i], i, vc[i], i, wtorque[i]);
   }
 
   /* キネマティクス計算 */
